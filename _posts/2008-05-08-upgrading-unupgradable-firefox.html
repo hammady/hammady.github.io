@@ -1,0 +1,13 @@
+---
+layout: post
+title: Upgrading unupgradable Firefox extensions
+date: '2008-05-08T13:42:00.001+02:00'
+author: Hossam Hammady
+tags:
+- firefox
+modified_time: '2008-05-08T13:44:56.836+02:00'
+blogger_id: tag:blogger.com,1999:blog-1427064072400819258.post-8028707698044301197
+blogger_orig_url: http://blog.hammady.net/2008/05/upgrading-unupgradable-firefox.html
+---
+
+<div class="content"><br />    <p>To their bad fortune, many of you may have already upgraded to Firefox 3 beta. Ouch!<br />You may have also tried to upgrade your extensions and found most of them failed to do :(<br />Now you have either of 2 solutions:<br /></p><br /><ol><li> downgrade back to Firefox 2<br /></li><li> force upgrade of your extensions<br /></li></ol><br /><p>"2" seems nice, huh?<br />OK, lets go straight, now follow me on these:<br /></p><br /><ol><li> Any extension is an .xpi file (pronounced as zippy), download the .xpi. If you click on a .xpi link in Firefox it will be installed instead, so you can get it with any other browser, or right-click and Save as... You can also type the following in a shell: <code>wget XPI_URL</code><br /></li><li> Extract the .xpi with any archive manager (it is actually a ZIP file renamed)<br /></li><li> Open install.rdf with any text editor<br /></li><li> Locate the line: <em:maxVersion>...</em:maxVersion> and replace this value to something like 3.0b5. This will make your extension <i>pretend</i> to work on up to FF3 beta5!<br /></li><li> Now zip back your files and drag on any Firefox open window and it will automatically install.<br /></li><li> Enjoy!<br /></li></ol><br /><p><b>IMPORTANT</b>:<br /></p><br /><ul><li> The new archive you created in step 5 MUST have the extension .xpi<br /></li><li> Files in the archive should be directly on the root not inside an internal directory<br /></li><li> The extension will claim to work on your browser, but it may not function as you expect, simply because the extension maker did not test it on your version. So forcing it to work is solely on your responsibility with NO WARRANTY!<br /></li></ul><br />  </div>

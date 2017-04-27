@@ -1,0 +1,17 @@
+---
+layout: post
+title: "[Linux/Mac] Always leave your trash occupied, but not full"
+date: '2013-04-03T09:44:00.001+02:00'
+author: Hossam Hammady
+tags:
+- Ubuntu
+- linux
+- Mac
+- productivity
+- bash
+modified_time: '2015-03-04T13:02:24.497+02:00'
+blogger_id: tag:blogger.com,1999:blog-1427064072400819258.post-7478730188716459238
+blogger_orig_url: http://blog.hammady.net/2013/04/linuxmac-always-leave-your-trash.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on">Some people have a common "bad" practice of deleting items permanently as seeing the Trash (Recycle Bin for poor Windows users) non-empty provokes them! Rule of thumb: don't ever permanently delete your files, the trash is a great feature, so please use it! You never know when you will need those files again.<br /><br />However, by time your trash size will grow up and take a lot of space of your storage. No, I won't ask you to empty it every now and then. The best practice is to only delete files that are older than a specific date, lets say 30 days.<br /><span class="fullpost"><br /></span><span class="fullpost">To be short, this is a little bash script that will calculate the total trash size then deletes those old items and print again the new size: </span><br /><span class="fullpost"><br /></span><pre><span class="fullpost">victim=~/.Trash<br />echo Calculating $victim size...<br />echo $victim size: `du -sh $victim | cut -f1`<br />echo -n "Emptying $victim items older than 30 days, please be patient..."<br />find $victim -mtime +30d -exec rm -fr {} \; &amp;&gt; /dev/null<br />echo Done<br />echo Current $victim size: `du -sh $victim | cut -f1`<br /></span></pre><span class="fullpost"><div><span class="fullpost"><br /></span></div>You can change the victim to ~/Downloads or whatsoever, you can also change the number of days to weeks or months or whatsoever. Use it at your own risk :) For your convenience I have created 2 scripts, <a href="http://hammady.net/scripts/empty-trash-older-than-30d.sh">one for Trash</a>, the <a href="http://hammady.net/scripts/empty-downloads-older-than-30d.sh">other for Downloads</a>. Download them to your home and just execute them whenever you run out of space. <pre><br />./empty-trash-older-than-30d.sh<br />./empty-downloads-older-than-30d.sh<br /></pre></span></div>

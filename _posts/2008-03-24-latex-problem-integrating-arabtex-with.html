@@ -1,0 +1,13 @@
+---
+layout: post
+title: 'LaTeX problem: Integrating ArabTeX with LLNCS'
+date: '2008-03-24T12:11:00.004+02:00'
+author: Hossam Hammady
+tags:
+- latex
+modified_time: '2008-03-24T15:48:01.252+02:00'
+blogger_id: tag:blogger.com,1999:blog-1427064072400819258.post-6364480493165829153
+blogger_orig_url: http://blog.hammady.net/2008/03/latex-problem-integrating-arabtex-with.html
+---
+
+LaTeX, the typesetting system enables you to produce high-quality documents with less effort. <a href="http://blog.hammady.net/2008/03/tex-latex-lyx-authors-kit-and-more.html">Read more</a> in my other post about LaTeX. On submitting to a conference, I had to work with their class files so I used <code>\documentclass{llncs}</code>. They use LaTeX Lecture Notes in Computer Science (<a href="http://www.springer.com/computer/lncs?SGWID=0-164-7-72376-0#anchor5">llncs</a>) from <a href="http://www.springer.com/">Springer</a>.<br /><br />  In the same document, I use <a href="http://en.wikipedia.org/wiki/ArabTeX">ArabTeX</a> package to render Arabic characters. When I applied both packages I found that section numbers disappered! So instead of "1. Introduction" and "1.2 Title" I got "Introduction" and "Title". After spending an hour or two I found that ArabTeX redefines the section formatting command <code>\section</code> using <code>\renewcommand</code> in asect.sty. So I disabled the inclusion of such file in apatch.sty by commenting the following:<br /><code><br />%\UsePackage {asect} % load LaTeX extensions for Arabic sections.<br /></code><br />  For a normal LaTeX installation, all files exist in <code>/usr/share/texmf/tex/latex/arabtex/</code><br />I don't know who will ever make use of this piece of information, just spreading the word. Let <a href="http://www.google.com/">Google</a> help me in that!

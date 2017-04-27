@@ -1,0 +1,13 @@
+---
+layout: post
+title: 'Footnotes from floats in LaTeX: problem & solution'
+date: '2008-03-30T05:56:00.008+02:00'
+author: Hossam Hammady
+tags:
+- latex
+modified_time: '2008-03-30T06:15:16.029+02:00'
+blogger_id: tag:blogger.com,1999:blog-1427064072400819258.post-1128860209645690099
+blogger_orig_url: http://blog.hammady.net/2008/03/footnotes-from-floats-in-latex-problem.html
+---
+
+(Excerpted from <a href="http://rhaptos.org/devblog/cbearden/blogentry.2007-09-28.4935639575">Rhaptos Software Development</a> )<br /><br /><span style="font-style: italic;"><a href="http://blog.hammady.net/2008/03/tex-latex-lyx-authors-kit-and-more.html">LaTeX</a> has floating environments, of which tables and figures are the most important. Footnotes from within those environments are problematic.</span><br /><br />The LaTeX engine will by default move floats around, even onto different pages, in order to achieve optimal horizontal and vertical page layouts. Human book editors and typesetters do the same thing when preparing books for press.<br /><br />Because of the way the LaTeX engine handles floats, footnotes from within them are problematic. In the normal case, the author inserts a <code>\footnote{}</code> command with the footnote text within the curly braces into the text at the point where the footnote marker should appear:<br /><br />Example:<br /><br /><code>This is my blog\footnote{Actually, it is hosted at Google} site.<br /></code><br />However, if the author is making a footnote from within a float environment, one inserts a <code>\footnotemark</code> command into the text in the float at the point where the footnote mark should appear, and then after the end of the float, one tacks on a <code>\footnotetext{}</code> command with the text of the footnote in it:<br /><br /><code>\begin{figure}<br />\includegraphics{blorgy.png}<br />\caption{This figure caption has a footnote.\footnotemark}<br />\end{figure}<br />\footnotetext{This is the text of the footnote.}<br /></code><br />The <code>\footnotemark</code> command increments the footnote counter, so if you have more than one <code>\footnotemark</code> before the <code>\footnotetext{}</code> commands, you have to set the footnote counter back so that the first <code>\footnotetext{}</code> doesn't get the count of the last <code>\footnotemark</code>.<br /><br /><code>\begin{figure}<br />\includegraphics{blorgy.png}<br />\caption{This figure caption has a footnote.\footnotemark}<br />In fact, it has two.\footnotemark<br />\end{figure}<br />\addtocounter{footnote}{-2}<br />\stepcounter{footnote}\footnotetext{This is the text of the first footnote.}<br />\stepcounter{footnote}\footnotetext{This is the text of the second footnote.}<br /></code><br /><br />And that's it.

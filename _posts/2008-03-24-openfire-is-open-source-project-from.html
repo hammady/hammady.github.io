@@ -1,0 +1,13 @@
+---
+layout: post
+title: 'OpenFire: a Java Jabber/XMPP server'
+date: '2008-03-24T15:04:00.006+02:00'
+author: Hossam Hammady
+tags:
+- jabber/xmpp
+modified_time: '2008-03-30T06:16:39.356+02:00'
+blogger_id: tag:blogger.com,1999:blog-1427064072400819258.post-1400700987766943247
+blogger_orig_url: http://blog.hammady.net/2008/03/openfire-is-open-source-project-from.html
+---
+
+<a href="http://www.igniterealtime.org/projects/openfire/index.jsp">OpenFire</a> is an open source project from <a href="http://www.igniterealtime.org/index.jsp">igniterealtime</a>. It is an IM (Instant Messaging) server that can be installed on any<br />corporate private network to provide IM solutions to its community. It uses the popular <a href="http://www.jabber.org/">Jabber</a>/<a href="http://www.xmpp.org/">XMPP</a> protocol so you can communicate with it through almost any multi-protocol IM client (<a href="http://www.pidgin.im/">Pidgin</a> for example). It has a counterpart IM client, <a href="http://www.igniterealtime.org/projects/spark/index.jsp">Spark</a>.<br /><br />OpenFire has many plugins that extend its functionality. Examples are IM Gateway, SIP phone, Content Filter... The IM Gateway enables you to connect to other networks (<a href="http://messenger.yahoo.com/">Yahoo! IM</a>, <a href="http://get.live.com/messenger/overview">MSN</a>, <a href="http://www.google.com/talk/">Google Talk</a>, ...). Support for such protocols in a Jabber server is a built-in functionality in the XMPP (Extensible Messaging and Presence Protocol) itself. In an XMPP server you may broadcast any number of services so that your XMPP clients can perform service discovery and "register" in such services. Once they are registered, they can "log in" and "log out" from services through the XMPP exchange. Services may add/remove to registered users' rosters (contact-lists). You can send/receive messages to/from your roster contacts. All of this through the XMPP XML messages. The XMPP server takes the responsibility of implementing service-specific protocols, on behalf of clients.<br /><br />Building on this, OpenFire created the Gateway IM plugin that implements famous IM protocols: Yahoo!, MSN, GTalk, ICQ,... You can implement your own protocol and configure the plugin to broadcast it as a service. Your Jabber clients can discover such new service and log in to their favorite networks without touching the client.

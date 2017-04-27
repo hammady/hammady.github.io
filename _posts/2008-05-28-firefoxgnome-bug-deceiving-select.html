@@ -1,0 +1,13 @@
+---
+layout: post
+title: 'Firefox bug: deceiving select onchange event'
+date: '2008-05-28T13:50:00.003+02:00'
+author: Hossam Hammady
+tags:
+- firefox
+modified_time: '2008-05-28T19:56:20.957+02:00'
+blogger_id: tag:blogger.com,1999:blog-1427064072400819258.post-4555091244689154566
+blogger_orig_url: http://blog.hammady.net/2008/05/firefoxgnome-bug-deceiving-select.html
+---
+
+I have been experiencing a silly bug in Firefox for 2 years now. It happens on my Ubuntu (Gnome) and formerly on Debian (Gnome too). I tried it on a Windows machine but it didn't work.<br />As usual, I am lazy to try it on all available platforms, so please help me in your comments!<br /><h4>Bug description:</h4><br />If a select element has no option selected (selectedIndex == -1), an outside-select click behavior deceives the browser to fire the onchange event for the select.<br /><h4>How to reproduce bug:</h4><br /><ol><br /><li>Click to open a select element</li><br /><li>Move your mouse over any option (make sure the option is highlighted, but don't click on anything)</li><br /><li>Click outside the select twice</li><br /><li>As a result of the bug, the onchange event is fired with the option under mouse as the select value</li><br /></ol><br /><br />To see an example, the bug is illustrated <a href="http://downloads.hammady.net/select-gnome-bug.html">here</a><br /><br />I tried it on Ubuntu (Gnome and KDE) and it happens too.<br />I tried also on Firefox for Windows (through <a href="http://www.winehq.org/">wine</a>) and it happens too!<br /><br />Now what?

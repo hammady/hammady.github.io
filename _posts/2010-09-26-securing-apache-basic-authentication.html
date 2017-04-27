@@ -1,0 +1,14 @@
+---
+layout: post
+title: Securing apache Basic authentication
+date: '2010-09-26T13:44:00.003+02:00'
+author: Hossam Hammady
+tags:
+- linux
+- apache
+modified_time: '2010-09-26T14:00:54.340+02:00'
+blogger_id: tag:blogger.com,1999:blog-1427064072400819258.post-882077043584424223
+blogger_orig_url: http://blog.hammady.net/2010/09/securing-apache-basic-authentication.html
+---
+
+The easiest way to <a href="http://httpd.apache.org/docs/1.3/howto/auth.html">secure your apache webserver</a> is using Basic authentication. Users wanting to access your webserver will be prompted to enter a username/password pair to do that. However, Basic authentication is not secure as it does not encrypt these credentials, nor the content itself. The solution comes in Digest authentication. This is how to migrate your server configuration from Basic to Digest authentication.<br /><span class="fullpost"><br />In Basic authentication, you create a passwords file (using htpasswd command) then configure apache as in the link above. To migrate to Digest authentication all you have to do is to:<br /><ol><li>Use the command htdigest instead of htpasswd to create users<br /><blockquote>htdigest -c /path/to/your/passwords/file "Authentication Realm" username</blockquote></li><li>Configure apache by adding the following:<br /><blockquote>AuthType Digest<br />AuthName "Authentication Realm"<br />AuthUserFile /path/to/your/passwords/file<br />Require valid-user</blockquote><br /></li><li>If you have SELinux running, enable httpd to access the passwords file:<br /><blockquote>setsebool -P httpd_enable_homedirs 1</blockquote></li><li>Restart apache:<br /><blockquote>service httpd restart</blockquote></li></ol><div>Note: the apache user (usually apache) needs to have read access to the passwords file, apparently!</div><div><br /></div><div>It is worth nothing that Digest authentication only encrypts your password, but not the content. Moreover, anyone sniffing on the packets, having the encrypted password, can use it directly to access your content. To overcome these issues, you have to put your content under SSL, but this is another story.</div><div><br /></div><div><br /></div></span>

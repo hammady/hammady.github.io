@@ -1,0 +1,13 @@
+---
+layout: post
+title: Busting Javascript alerts
+date: '2008-05-08T13:39:00.001+02:00'
+author: Hossam Hammady
+tags:
+- javascript
+modified_time: '2008-05-08T13:42:30.038+02:00'
+blogger_id: tag:blogger.com,1999:blog-1427064072400819258.post-8273048282548966485
+blogger_orig_url: http://blog.hammady.net/2008/05/busting-javascript-alerts.html
+---
+
+<p>Sometimes it is annoying to see alerts every now and then in web pages. It is not practical to switch off alerts altogether (see <a href="http://www.mozilla.org/projects/security/components/ConfigPolicy.html" class="external text" title="http://www.mozilla.org/projects/security/components/ConfigPolicy.html">this</a>), however it may seem convenient to get control over alerts and do whatever actions: mute, show somewhere else, ...<br />It is simple like overriding the <code>window.alert</code> function:<br /></p><p><code><br />window.alert = function(msg)<br />{<br /></code></p><br /><pre> // do whatever, for example:<br /> document.title = "busted alert: " + msg<br /> var div = document.getElementById('divid').innerHTML = msg<br /></pre><br /><p>}<br /><br /></p><p>Of course this is applicable for <code>window.confirm</code> and <code>window.prompt</code> too.<br /></p><p>This may appear trivial and useless. However, you can elevate its potential in 2 ways:<br /></p><p>First: You can bust alerts of embedded iframes by getting a reference to its content window:<br /></p><p><code><br />function loaded(iframe) {<br /></code></p><br /><pre> var iframe = document.getElementById('iframeid')<br /> // or iframe = document.frames[0]<br /> // or iframe = document.frames[frame_name]<br /> // or just use the iframe function argument above<br /> iframe.contentWindow.alert = function(msg) {...}<br /></pre><br /><p>}<br /><br /></p><p>You will have to put previous code in the onload function of the iframe:<br /></p><p><code><br />&lt;iframe onload="loaded(this)&gt;&lt;/iframe&gt;<br /></code><br /></p><p>I tried this on both Firefox2 and IE7 and it worked with no problems. Other browsers?<br /></p><p>The other way to make this useful is to install <a href="https://addons.mozilla.org/en-US/firefox/addon/748" class="external text" title="https://addons.mozilla.org/en-US/firefox/addon/748">Greasemonkey</a> and create a new user script containing the overriding code.<br />You will have to access the <a href="http://wiki.greasespot.net/UnsafeWindow" class="external text" title="http://wiki.greasespot.net/UnsafeWindow">unsafe window object</a> to do so:<br /></p><p><code><br />unsafeWindow.alert = function(msg){...}<br /></code><br /></p><p>This way you can do anything to alerts coming from any site that will run the user script.<br /></p>
