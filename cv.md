@@ -2,8 +2,5 @@
 title: CV
 permalink: /cv
 redirect_to:
-  - http://hammady-resume.herokuapp.com/home/print.pdf
+  - https://www.hammady.net/pdfcv/
 ---
-
-A fresh copy of my CV is now loading...
-
